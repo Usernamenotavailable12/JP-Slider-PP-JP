@@ -1,0 +1,188 @@
+<style>
+  body:has(.pp-jp-logo) {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 59px;
+  }
+
+  .pragmatic-data-container {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Ambassadori';
+  }
+
+  .pragmatic-data-container.small .pragmatic-data.power-data {
+    display: block;
+    width: 233px;
+    height: 118px;
+  }
+
+
+  .pragmatic-data {
+    width: 180px;
+    height: 59px;
+    background-image: url(https://images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/836738d2-f79c-48a2-9869-6f0821409b02/jackpot-minor.png?auto=format%2Ccompress);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    margin: 0;
+  }
+
+  .pragmatic-data.major-data {
+    background-image: url(https://images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/fd2561e1-39ca-4f57-9027-64a80935c553/jackpot-major.png?auto=format%2Ccompress);
+    margin: 0;
+  }
+
+  .pragmatic-data.minor-data {
+    background-image: url(https://images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/6cafb0de-038b-475f-babe-e47ae8a98633/jackpot-mega.png?auto=format%2Ccompress);
+    margin: 0;
+  }
+
+  .pragmatic-data.mini-data {
+    background-image: url(https://images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/1e2014f5-b268-4750-8a98-5cc4dec09a2e/jackpot-grand.png?auto=format%2Ccompress);
+    margin: 0;
+  }
+
+  .pragmatic-data.mega-data,
+  .pragmatic-data.grand-data {
+    display: none;
+  }
+
+  .pragmatic-data span {
+    display: block;
+    width: 185px;
+    height: 55px;
+    margin: 0px auto;
+    overflow: hidden;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    line-height: 55px;
+    text-align: start;
+    margin-left: 60px;
+  }
+
+  .pragmatic-data::after {
+    content: '₾';
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -38px;
+    color: rgb(255, 255, 255);
+    margin-right: 28px;
+    font-size: 16px;
+  }
+
+  .pp-jp-logo {
+    height: 50px;
+    width: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  @media (max-width: 1200px) {
+    .pragmatic-data-container {
+      display: grid;
+      grid-template-columns: repeat(2, 0fr);
+      grid-template-rows: repeat(2, 0fr);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+      justify-items: center;
+    }
+
+    .pp-jp-logo {
+      display: none;
+    }
+
+    .pragmatic-data {
+      width: 140px;
+      height: 39px;
+    }
+
+    .pragmatic-data-container {
+      background-image: url('https:/images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/3b3ee32a-16dd-4904-84fd-992a3e3cd04b/pragmatic-desktop-bg.webp');
+      border-radius: 5px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding-top: 9px;
+      padding-bottom: 9px;
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+      border: solid 1px rgb(207, 22, 125, 0.4);
+
+    }
+
+    .pragmatic-data span {
+      display: block;
+      width: 185px;
+      height: 55px;
+      margin: 0px auto;
+      overflow: hidden;
+      font-size: 12px;
+      color: rgb(255, 255, 255);
+      line-height: 35px;
+      text-align: start;
+      margin-left: 50px;
+    }
+
+    .pragmatic-data::after {
+      content: '₾';
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -46px;
+      color: rgb(255, 255, 255);
+      margin-right: 18px;
+      font-size: 12px;
+    }
+
+    body:has(.pp-jp-logo) {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 98px;
+    }
+  }
+</style>
+<div class="pragmatic-data-container">
+  <div class="pragmatic-data power-data">
+    <span class="number" id="number1">0</span>
+  </div>
+  <div class="pragmatic-data major-data">
+    <span class="number" id="number2">0</span>
+  </div>
+  <img
+    src="https://images.takeshape.io/5da2b4d5-59f6-412a-82c3-f6a272b532be/dev/a9d78157-1962-4dc5-bf6e-b01a1c269c2e/jackpot-play.png?auto=format%2Ccompress"
+    class="pp-jp-logo">
+  <div class="pragmatic-data minor-data">
+    <span class="number" id="number3">0</span>
+  </div>
+  <div class="pragmatic-data mini-data">
+    <span class="number" id="number4">0</span>
+  </div>
+</div>
+<script>
+  function fetchData() {
+    fetch('https://api-dk12.pragmaticplay.net/IntegrationService/v3/JackpotFeeds/extended/jackpots/?login=samsara_ambassadori&currency=GEL&hash=d4fd90d5f376bc961e4c8fb795557153')
+      .then(response => response.json())
+      .then(data => {
+        const numbers = data.jackpots[0].tiers.map(tier => formatNumber((Math.round(tier.amount * 100) / 100).toFixed(2)));
+        const numberElements = document.querySelectorAll('.number');
+        numberElements.forEach((element, index) => {
+          element.textContent = `${numbers[index]}`;
+        });
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  }
+
+  function formatNumber(number) {
+    const [integerPart, decimalPart] = number.split('.');
+    if (integerPart.length > 3) {
+      return integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + decimalPart;
+    }
+    return number;
+  }
+
+  fetchData();
+
+  setInterval(fetchData, 5000);
+</script>
